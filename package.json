@@ -1,0 +1,19 @@
+{
+  "name": "doms-game-sucks",
+  "version": "1.0.0",
+  "private": true,
+  "description": "An extravagant turtle vs alligator tic-tac-toe browser game.",
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "tic-tac-toe",
+    "browser-game",
+    "turtle",
+    "alligator"
+  ],
+  "author": "",
+  "license": "MIT"
+}

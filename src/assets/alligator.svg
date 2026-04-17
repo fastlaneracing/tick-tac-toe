@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 170" role="img" aria-labelledby="title desc">
+  <title id="title">Cartoon alligator</title>
+  <desc id="desc">A grinning alligator with sharp teeth and a dramatic red crest.</desc>
+  <path d="M20 93c21-36 71-56 139-54 39 1 61 14 64 35 2 16-9 28-34 37-31 12-75 17-131 15-27-1-42-12-38-33Z" fill="#0b7f45" stroke="#15120d" stroke-width="8"/>
+  <path d="M72 56c10-16 22-26 37-30l6 22 19-23 8 24 22-18 4 27" fill="#ff2f8f" stroke="#15120d" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M68 85c36-8 77-9 123-3" fill="none" stroke="#a3ff12" stroke-width="8" stroke-linecap="round"/>
+  <path d="M82 113c33 10 68 10 106-2" fill="none" stroke="#15120d" stroke-width="6" stroke-linecap="round"/>
+  <path d="M105 116l7 17 9-18 10 17 8-18 12 16 5-18" fill="#fffdf0" stroke="#15120d" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M183 54c14-19 36-21 47-7 10 13 2 31-18 35-16 3-28-6-29-28Z" fill="#0b7f45" stroke="#15120d" stroke-width="8"/>
+  <circle cx="210" cy="54" r="6" fill="#15120d"/>
+  <circle cx="188" cy="50" r="6" fill="#15120d"/>
+  <path d="M24 91c-20-4-24-23-9-34 16-12 39 0 45 28" fill="#0b7f45" stroke="#15120d" stroke-width="8" stroke-linecap="round"/>
+  <path d="M54 126l-25 24M91 127l-11 30M158 124l10 30M195 114l24 21" stroke="#15120d" stroke-width="10" stroke-linecap="round"/>
+  <path d="M37 141h26M69 154h27M154 151h27M207 132h24" stroke="#0b7f45" stroke-width="12" stroke-linecap="round"/>
+</svg>

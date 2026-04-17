@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 180" role="img" aria-labelledby="title desc">
+  <title id="title">Cartoon turtle</title>
+  <desc id="desc">A bright green turtle with a golden shell and a confident grin.</desc>
+  <path d="M32 116c-16 2-26 11-25 23 1 14 18 23 35 14 11-6 15-19 8-29-4-6-10-9-18-8Z" fill="#69d35d" stroke="#15120d" stroke-width="8"/>
+  <path d="M176 116c16 2 26 11 25 23-1 14-18 23-35 14-11-6-15-19-8-29 4-6 10-9 18-8Z" fill="#69d35d" stroke="#15120d" stroke-width="8"/>
+  <path d="M110 37c-46 0-82 28-82 64 0 42 32 66 82 66s82-24 82-66c0-36-36-64-82-64Z" fill="#ffd23f" stroke="#15120d" stroke-width="9"/>
+  <path d="M55 100c17-28 35-42 55-42s38 14 55 42c-13 26-31 39-55 39s-42-13-55-39Z" fill="#0b7f45" stroke="#15120d" stroke-width="7"/>
+  <path d="M73 90h74M82 117h56M110 61v80M87 71l46 62M133 71l-46 62" stroke="#a3ff12" stroke-width="6" stroke-linecap="round"/>
+  <path d="M157 63c8-25 26-42 45-36 15 5 19 22 8 37-10 14-31 18-53-1Z" fill="#69d35d" stroke="#15120d" stroke-width="8"/>
+  <circle cx="190" cy="42" r="6" fill="#15120d"/>
+  <path d="M183 59c8 5 16 5 23-1" fill="none" stroke="#15120d" stroke-width="5" stroke-linecap="round"/>
+  <path d="M61 63c-8-25-26-42-45-36-15 5-19 22-8 37 10 14 31 18 53-1Z" fill="#69d35d" stroke="#15120d" stroke-width="8"/>
+  <circle cx="28" cy="42" r="6" fill="#15120d"/>
+</svg>
