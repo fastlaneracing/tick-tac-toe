@@ -59,9 +59,20 @@ app_location: "/"
 api_location: ""
 output_location: ""
 skip_app_build: true
+skip_api_build: true
 ```
 
 With `skip_app_build: true`, Azure deploys the files from `app_location` directly.
+
+If the deployment fails with this message:
+
+```text
+Could not find either 'build' or 'build:azure' node under 'scripts' in package.json.
+```
+
+then Azure is still trying to run a Node build. Fix the GitHub Actions workflow so the deploy step has `skip_app_build: true` and `output_location: ""`, then commit and push the workflow file.
+
+The workflow file must be a complete GitHub Actions workflow, not just the four build settings. It should include `name`, `on`, `jobs`, `steps`, and the `Azure/static-web-apps-deploy@v1` action.
 
 As a fallback, the project also has a simple `build` script:
 
