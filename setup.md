@@ -40,21 +40,36 @@ In the Azure Portal:
 6. Set the deployment source to **GitHub**.
 7. Sign in to GitHub and select the repo and branch.
 
-Use these build settings:
+Use these build settings for this no-build static app:
 
 ```text
 App location: /
 Api location: leave blank
-Output location: /
+Output location: leave blank
+Build command: leave blank
+Skip app build: true
 ```
 
 If Azure asks for a build preset, choose **Custom** or **HTML** if available.
 
-Because this app does not need a build step, no real build command is required. If Azure complains about the missing build script, add this to `package.json`:
+If Azure created a GitHub Actions workflow, open the file under `.github/workflows/` and make sure the Static Web Apps step uses:
+
+```yaml
+app_location: "/"
+api_location: ""
+output_location: ""
+skip_app_build: true
+```
+
+With `skip_app_build: true`, Azure deploys the files from `app_location` directly.
+
+As a fallback, the project also has a simple `build` script:
 
 ```json
 "build": "echo No build needed"
 ```
+
+That fallback lets Azure finish if you choose not to skip the build, but the cleaner setting for this project is still to skip the app build.
 
 ## Test the Azure URL
 
@@ -122,4 +137,3 @@ How the redirect works depends on where the domain is managed:
 - Static Web Apps custom domains: https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain
 - Custom domain with Azure DNS: https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-azure-dns
 - Custom domain with external DNS: https://learn.microsoft.com/en-us/azure/static-web-apps/custom-domain-external
-

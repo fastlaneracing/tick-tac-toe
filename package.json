@@ -5,6 +5,7 @@
   "description": "An extravagant turtle vs alligator tic-tac-toe browser game.",
   "type": "module",
   "scripts": {
+    "build": "echo No build needed",
     "dev": "node server.js",
     "start": "node server.js"
   },
