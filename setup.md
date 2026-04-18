@@ -146,6 +146,23 @@ If the preflight check says the token is missing even though the repository secr
 - The secret name has no extra spaces or missing characters.
 - The secret value was saved after copying the latest Azure deployment token.
 
+If the preflight check passes but Azure still says:
+
+```text
+No matching Static Web App was found or the api key was invalid.
+```
+
+then GitHub is passing a token, but Azure does not accept the token value. Reset the deployment token from the exact Static Web App resource that should host this site, then paste that new value into the GitHub secret.
+
+Also check the Azure Static Web App **Overview** page. If Azure shows a workflow file name or branch, it should match this repository's workflow file and branch:
+
+```text
+.github/workflows/azure-static-web-apps-kind-pebble-00fe0ec0f.yml
+master
+```
+
+If Azure shows a different workflow file or branch, update the Azure deployment configuration or recreate the Static Web App connection from Azure using this GitHub repository and the `master` branch.
+
 As a fallback, the project also has a simple `build` script:
 
 ```json

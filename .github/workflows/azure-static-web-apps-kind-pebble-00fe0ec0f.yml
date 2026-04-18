@@ -28,7 +28,12 @@ jobs:
             echo "::error::AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_PEBBLE_00FE0EC0F is missing or unavailable to this workflow run."
             exit 1
           fi
-          echo "Azure Static Web Apps deployment token is available."
+          TOKEN_LENGTH=${#AZURE_DEPLOYMENT_TOKEN}
+          if [ "$TOKEN_LENGTH" -lt 100 ]; then
+            echo "::error::Azure deployment token is present, but it is only $TOKEN_LENGTH characters long. That usually means the wrong value was pasted into the GitHub secret."
+            exit 1
+          fi
+          echo "Azure Static Web Apps deployment token is available and has a deployment-token-sized value."
 
       - name: Build And Deploy
         id: builddeploy
