@@ -209,6 +209,23 @@ Use the exact value Azure gives you. Azure may also ask for a TXT record to vali
 
 If DNS is hosted in Azure DNS, Azure can help create the needed DNS records. If DNS is hosted somewhere else, such as GoDaddy, Cloudflare, Namecheap, or Squarespace, create the records in that provider's DNS settings.
 
+## Fix Custom Domain SSL Warnings
+
+Azure Static Web Apps automatically creates free SSL/TLS certificates for custom domains, but certificate provisioning can lag behind custom domain validation.
+
+If `www.swamppuppypark.com` is verified but the browser still says the site is not secure:
+
+1. Make sure the browser address starts with `https://www.swamppuppypark.com`.
+2. In Azure Portal, open the Static Web App.
+3. Go to **Custom domains**.
+4. Confirm `www.swamppuppypark.com` shows as validated and does not show a certificate error.
+5. Wait for certificate provisioning if the domain was just added. It can take time after validation.
+6. Confirm DNS still has the `www` CNAME pointing to the Azure Static Web Apps default hostname.
+7. If using Cloudflare or another proxy, temporarily set the DNS record to DNS-only while Azure issues the certificate.
+8. If the certificate is still not issued after a long wait, remove and re-add the custom domain in Azure, then revalidate DNS.
+
+This app uses relative asset URLs, so mixed content should not be the cause unless future changes add hard-coded `http://` links.
+
 ## Handle the Root Domain
 
 The root domain is:

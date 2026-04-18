@@ -2,7 +2,7 @@
 
 ## Project
 
-This is a browser-based tic-tac-toe game called **Citrus Criter Brawl**.
+This is a browser-based tic-tac-toe game called **Citrus Critter Brawl**.
 
 The game uses:
 

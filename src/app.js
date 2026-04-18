@@ -38,6 +38,10 @@ const state = {
   }
 };
 
+function computerThinkDelay() {
+  return 500 + Math.floor(Math.random() * 751);
+}
+
 const cells = [...document.querySelectorAll(".cell")];
 const statusText = document.querySelector("#status");
 const modeButtons = [...document.querySelectorAll("[data-mode]")];
@@ -139,8 +143,9 @@ function makeMove(index) {
 
   if (state.mode === "computer" && state.current !== state.human) {
     state.locked = true;
+    setStatus(`${animals[state.current].label} is thinking. Probably too hard.`);
     renderBoard();
-    window.setTimeout(playComputerTurn, 450);
+    window.setTimeout(playComputerTurn, computerThinkDelay());
   }
 }
 
@@ -223,8 +228,9 @@ function newRound(message = "Fresh round. Turtle starts because tradition is bos
 
   if (state.mode === "computer" && state.current !== state.human) {
     state.locked = true;
+    setStatus(`${animals[state.current].label} is thinking. The swamp grows quiet.`);
     renderBoard();
-    window.setTimeout(playComputerTurn, 450);
+    window.setTimeout(playComputerTurn, computerThinkDelay());
   }
 }
 
