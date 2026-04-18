@@ -89,7 +89,7 @@ then the GitHub Actions secret does not match the Azure Static Web App deploymen
 The workflow uses this secret name:
 
 ```text
-AZURE_STATIC_WEB_APPS_API_TOKEN
+AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_PEBBLE_00FE0EC0F
 ```
 
 To fix it:
@@ -101,12 +101,39 @@ To fix it:
 5. Copy the new deployment token.
 6. Open the GitHub repository.
 7. Go to **Settings** > **Secrets and variables** > **Actions**.
-8. Create or update the repository secret named `AZURE_STATIC_WEB_APPS_API_TOKEN`.
+8. Create or update the repository secret named `AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_PEBBLE_00FE0EC0F`.
 9. Paste the Azure deployment token as the value.
 10. Save the secret.
 11. Rerun the failed GitHub Actions workflow, or push a new commit.
 
 If the app was deleted and recreated in Azure, always reset and re-save the token. Tokens belong to a specific Static Web App.
+
+If the deployment fails with this message:
+
+```text
+deployment_token was not provided.
+The deployment_token is required for deploying content.
+```
+
+then GitHub does not have a secret with the exact name the workflow is using, or the secret has no value.
+
+For this repo, the workflow expects this exact repository secret:
+
+```text
+AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_PEBBLE_00FE0EC0F
+```
+
+Check GitHub:
+
+1. Open the GitHub repository.
+2. Go to **Settings** > **Secrets and variables** > **Actions**.
+3. Under **Repository secrets**, confirm `AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_PEBBLE_00FE0EC0F` exists.
+4. If it does not exist, create it.
+5. If it exists, update it with a freshly copied Azure deployment token.
+
+Do not put the token in `setup.md`, the workflow file, or any committed file. It must be stored as a GitHub Actions secret.
+
+If GitHub has a different Azure-generated secret name, update the workflow to use that exact secret name.
 
 As a fallback, the project also has a simple `build` script:
 
