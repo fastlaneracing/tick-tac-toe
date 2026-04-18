@@ -35,5 +35,5 @@ const server = createServer(async (req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`Doms Game Sucks is live at http://localhost:${port}`);
+  console.log(`Citrus Criter Brawl is live at http://localhost:${port}`);
 });
