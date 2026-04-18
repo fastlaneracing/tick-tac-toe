@@ -21,9 +21,8 @@ Create a GitHub repo, then run these commands from this project folder:
 ```powershell
 git add .
 git commit -m "Initial turtle alligator tic tac toe app"
-git branch -M main
 git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
-git push -u origin main
+git push -u origin master
 ```
 
 Replace `YOUR-USERNAME` and `YOUR-REPO` with the real GitHub account and repository name.
@@ -73,6 +72,8 @@ Could not find either 'build' or 'build:azure' node under 'scripts' in package.j
 then Azure is still trying to run a Node build. Fix the GitHub Actions workflow so the deploy step has `skip_app_build: true` and `output_location: ""`, then commit and push the workflow file.
 
 The workflow file must be a complete GitHub Actions workflow, not just the four build settings. It should include `name`, `on`, `jobs`, `steps`, and the `Azure/static-web-apps-deploy@v1` action.
+
+This repo currently uses the `master` branch. The workflow should listen to `master` unless the repo is renamed to use `main`.
 
 As a fallback, the project also has a simple `build` script:
 
