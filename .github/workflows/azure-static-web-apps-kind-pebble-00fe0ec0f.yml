@@ -20,6 +20,16 @@ jobs:
           submodules: true
           lfs: false
 
+      - name: Verify Azure deployment token is available
+        env:
+          AZURE_DEPLOYMENT_TOKEN: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_PEBBLE_00FE0EC0F }}
+        run: |
+          if [ -z "$AZURE_DEPLOYMENT_TOKEN" ]; then
+            echo "::error::AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_PEBBLE_00FE0EC0F is missing or unavailable to this workflow run."
+            exit 1
+          fi
+          echo "Azure Static Web Apps deployment token is available."
+
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1

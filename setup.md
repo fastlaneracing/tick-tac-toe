@@ -135,6 +135,17 @@ Do not put the token in `setup.md`, the workflow file, or any committed file. It
 
 If GitHub has a different Azure-generated secret name, update the workflow to use that exact secret name.
 
+The workflow includes a safe preflight check that prints only whether the token is available. It never prints the token value.
+
+If the preflight check says the token is missing even though the repository secret exists, check:
+
+- The workflow run is from the same GitHub repository where the secret is stored.
+- The workflow run is from the `master` branch.
+- The workflow run is not from a pull request opened from a fork.
+- The secret is under **Repository secrets**, not only under **Environment secrets**.
+- The secret name has no extra spaces or missing characters.
+- The secret value was saved after copying the latest Azure deployment token.
+
 As a fallback, the project also has a simple `build` script:
 
 ```json
