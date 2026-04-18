@@ -75,6 +75,39 @@ The workflow file must be a complete GitHub Actions workflow, not just the four 
 
 This repo currently uses the `master` branch. The workflow should listen to `master` unless the repo is renamed to use `main`.
 
+## Fix an Invalid Azure Deployment Token
+
+If the deployment fails with this message:
+
+```text
+The content server has rejected the request with: BadRequest
+Reason: No matching Static Web App was found or the api key was invalid.
+```
+
+then the GitHub Actions secret does not match the Azure Static Web App deployment token, or the workflow is pointing at the wrong Static Web App.
+
+The workflow uses this secret name:
+
+```text
+AZURE_STATIC_WEB_APPS_API_TOKEN
+```
+
+To fix it:
+
+1. Open the Azure Portal.
+2. Open the Static Web App resource for this site.
+3. On the Overview page, select **Manage deployment token**.
+4. Select **Reset token**.
+5. Copy the new deployment token.
+6. Open the GitHub repository.
+7. Go to **Settings** > **Secrets and variables** > **Actions**.
+8. Create or update the repository secret named `AZURE_STATIC_WEB_APPS_API_TOKEN`.
+9. Paste the Azure deployment token as the value.
+10. Save the secret.
+11. Rerun the failed GitHub Actions workflow, or push a new commit.
+
+If the app was deleted and recreated in Azure, always reset and re-save the token. Tokens belong to a specific Static Web App.
+
 As a fallback, the project also has a simple `build` script:
 
 ```json
