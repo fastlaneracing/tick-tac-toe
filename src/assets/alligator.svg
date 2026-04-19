@@ -1,15 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 170" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 150" role="img" aria-labelledby="title desc">
   <title id="title">Cartoon alligator</title>
-  <desc id="desc">A grinning alligator with sharp teeth and a dramatic red crest.</desc>
-  <path d="M20 93c21-36 71-56 139-54 39 1 61 14 64 35 2 16-9 28-34 37-31 12-75 17-131 15-27-1-42-12-38-33Z" fill="#0b7f45" stroke="#15120d" stroke-width="8"/>
-  <path d="M72 56c10-16 22-26 37-30l6 22 19-23 8 24 22-18 4 27" fill="#ff2f8f" stroke="#15120d" stroke-width="7" stroke-linejoin="round"/>
-  <path d="M68 85c36-8 77-9 123-3" fill="none" stroke="#a3ff12" stroke-width="8" stroke-linecap="round"/>
-  <path d="M82 113c33 10 68 10 106-2" fill="none" stroke="#15120d" stroke-width="6" stroke-linecap="round"/>
-  <path d="M105 116l7 17 9-18 10 17 8-18 12 16 5-18" fill="#fffdf0" stroke="#15120d" stroke-width="5" stroke-linejoin="round"/>
-  <path d="M183 54c14-19 36-21 47-7 10 13 2 31-18 35-16 3-28-6-29-28Z" fill="#0b7f45" stroke="#15120d" stroke-width="8"/>
-  <circle cx="210" cy="54" r="6" fill="#15120d"/>
-  <circle cx="188" cy="50" r="6" fill="#15120d"/>
-  <path d="M24 91c-20-4-24-23-9-34 16-12 39 0 45 28" fill="#0b7f45" stroke="#15120d" stroke-width="8" stroke-linecap="round"/>
-  <path d="M54 126l-25 24M91 127l-11 30M158 124l10 30M195 114l24 21" stroke="#15120d" stroke-width="10" stroke-linecap="round"/>
-  <path d="M37 141h26M69 154h27M154 151h27M207 132h24" stroke="#0b7f45" stroke-width="12" stroke-linecap="round"/>
+  <desc id="desc">A cartoon alligator with a long snout, bumpy armored back, short legs, and a toothy grin.</desc>
+  <path d="M22 88c-15-9-19-21-10-30 11-11 34-4 62 20" fill="#2d8f54" stroke="#171611" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M47 82c24-28 72-43 135-39 37 2 58 13 62 31 4 17-10 31-38 39-35 10-91 11-143 3-22-4-30-16-16-34Z" fill="#2f9b5b" stroke="#171611" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M143 51c25-15 62-22 91-10 15 6 23 18 21 31-3 15-18 22-42 20-29-2-55-11-83-25" fill="#3eaa65" stroke="#171611" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M159 72c27 10 58 14 88 11" fill="none" stroke="#b7f526" stroke-width="6" stroke-linecap="round"/>
+  <path d="M142 84c26 8 60 11 95 7" fill="none" stroke="#171611" stroke-width="5" stroke-linecap="round"/>
+  <path d="M160 91l7 13 8-12 9 13 8-12 11 11 5-12" fill="#f8fff6" stroke="#171611" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M181 39c3-14 16-21 27-16 8 4 10 13 4 23" fill="#3eaa65" stroke="#171611" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M219 41c4-12 17-16 26-8 7 6 6 17-3 25" fill="#3eaa65" stroke="#171611" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="199" cy="37" r="5.5" fill="#171611"/>
+  <circle cx="235" cy="45" r="5.5" fill="#171611"/>
+  <path d="M65 60l11-19 10 18 14-20 8 21 16-17 6 20 18-14 4 22" fill="#1f6f43" stroke="#171611" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M57 113l-20 22M88 118l-8 23M155 119l10 22M197 112l22 17" stroke="#171611" stroke-width="9" stroke-linecap="round"/>
+  <path d="M31 134h28M69 140h28M156 139h28M211 127h29" stroke="#2f9b5b" stroke-width="11" stroke-linecap="round"/>
+  <path d="M72 82c25-7 57-9 91-5" fill="none" stroke="#b7f526" stroke-width="6" stroke-linecap="round"/>
+  <path d="M76 102c28 7 61 9 97 5" fill="none" stroke="#0f613a" stroke-width="5" stroke-linecap="round"/>
 </svg>
