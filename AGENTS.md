@@ -2,13 +2,14 @@
 
 ## Project
 
-This is a browser-based tic-tac-toe game called **Citrus Critter Brawl**.
+This is a browser-based website for **Swamp Puppy Park**, a fictional Florida alligator petting zoo. It also includes a linked tic-tac-toe game called **Citrus Critter Brawl**.
 
-The game uses:
+The site uses:
 
-- `index.html` for the page structure
-- `src/styles.css` for the extravagant visual design
-- `src/app.js` for all gameplay logic
+- `index.html` for the Swamp Puppy Park homepage
+- `game.html` for the Citrus Critter Brawl game page
+- `src/styles.css` for the extravagant visual design across the site and game
+- `src/app.js` for all gameplay logic on `game.html`
 - `src/assets/turtle.svg` and `src/assets/alligator.svg` for the player pieces
 - `server.js` as a tiny static file server
 - `package.json` for app scripts
@@ -30,6 +31,7 @@ http://localhost:5173
 ```
 
 The app is also designed to work by opening `index.html` directly in a browser.
+Open `game.html` directly to test Citrus Critter Brawl without the local server.
 
 ## Development Notes
 
@@ -39,6 +41,7 @@ The app is also designed to work by opening `index.html` directly in a browser.
 - Keep the page usable in a normal browser without a build step.
 - Preserve direct-file compatibility: avoid requiring module imports or server-only behavior unless the project is intentionally changed.
 - Use turtle and alligator imagery instead of X and O.
+- Keep the Swamp Puppy Park homepage feeling like a plausible family attraction while staying ridiculous.
 - Keep the loud, over-the-top style. This app is supposed to be ridiculous.
 - Keep this `AGENTS.md` file updated when project structure, deployment, scripts, or important workflows change.
 
@@ -67,6 +70,8 @@ Keep `setup.md` updated with any deployment procedure changes.
 
 Before finishing changes, check:
 
+- The Swamp Puppy Park homepage loads.
+- The homepage link to Citrus Critter Brawl opens `game.html`.
 - The grid accepts clicks.
 - Pieces appear in selected squares.
 - Computer mode works.

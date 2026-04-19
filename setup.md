@@ -1,8 +1,8 @@
 # Setup and Publishing
 
-This app is a static browser game, so the recommended Azure hosting option is **Azure Static Web Apps**.
+This app is a static Swamp Puppy Park website with a linked browser game, so the recommended Azure hosting option is **Azure Static Web Apps**.
 
-Azure Static Web Apps is a good fit because the game is plain HTML, CSS, JavaScript, and SVG assets. It does not need a backend server to run.
+Azure Static Web Apps is a good fit because the site is plain HTML, CSS, JavaScript, and SVG assets. It does not need a backend server to run.
 
 ## Recommended Publishing Path
 
@@ -181,8 +181,10 @@ https://some-random-name.azurestaticapps.net
 
 Open that URL and confirm:
 
-- The page loads.
-- The grid accepts clicks.
+- The Swamp Puppy Park homepage loads.
+- The navigation and ticket/event sections are reachable.
+- The Citrus Critter Brawl link opens `game.html`.
+- The game grid accepts clicks.
 - Turtle and alligator pieces appear.
 - Computer mode works.
 - Two-player mode works.

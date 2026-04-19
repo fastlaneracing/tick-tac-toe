@@ -1,19 +1,26 @@
 :root {
   color-scheme: light;
-  --ink: #15120d;
-  --paper: #fff7d8;
-  --lime: #a3ff12;
-  --green: #0b7f45;
-  --pink: #ff2f8f;
-  --red: #e23120;
+  --ink: #171611;
+  --paper: #f8fff6;
+  --mist: #e8fff8;
+  --lime: #b7f526;
+  --green: #147c4c;
+  --deep-green: #095735;
+  --pink: #ff3f91;
+  --red: #e33126;
   --gold: #ffd23f;
-  --cyan: #29d9ff;
+  --cyan: #2fd8ff;
+  --lavender: #c7a8ff;
   --tile: #fffdf0;
-  --shadow: rgba(0, 0, 0, 0.28);
+  --shadow: rgba(0, 0, 0, 0.24);
 }
 
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -21,15 +28,386 @@ body {
   min-width: 320px;
   min-height: 100vh;
   color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  background:
+    linear-gradient(135deg, rgba(183, 245, 38, 0.22) 0 22%, transparent 22% 42%, rgba(47, 216, 255, 0.16) 42% 64%, transparent 64%),
+    repeating-linear-gradient(45deg, #f8fff6 0 1rem, #e8fff8 1rem 2rem);
+}
+
+body.game-page {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   background:
-    linear-gradient(135deg, rgba(255, 47, 143, 0.2) 0 20%, transparent 20% 40%, rgba(41, 217, 255, 0.22) 40% 60%, transparent 60% 80%, rgba(163, 255, 18, 0.2) 80%),
+    linear-gradient(135deg, rgba(255, 63, 145, 0.2) 0 20%, transparent 20% 40%, rgba(47, 216, 255, 0.22) 40% 60%, transparent 60% 80%, rgba(183, 245, 38, 0.2) 80%),
     radial-gradient(circle at 15% 10%, rgba(255, 210, 63, 0.8), transparent 22rem),
-    repeating-linear-gradient(45deg, #0b7f45 0 1.25rem, #fff7d8 1.25rem 2.5rem);
+    repeating-linear-gradient(45deg, #147c4c 0 1.25rem, #f8fff6 1.25rem 2.5rem);
+}
+
+img {
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
 }
 
 button {
   font: inherit;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem max(1rem, calc((100vw - 1180px) / 2));
+  border-bottom: 0.18rem solid var(--ink);
+  background: rgba(248, 255, 246, 0.94);
+  box-shadow: 0 0.35rem 0 rgba(0, 0, 0, 0.08);
+}
+
+.site-header.compact {
+  position: static;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.55rem;
+  letter-spacing: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.brand img {
+  width: 2.7rem;
+  height: 2.7rem;
+  filter: drop-shadow(0.16rem 0.2rem 0 var(--gold));
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.45rem;
+}
+
+.nav-links a,
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.55rem;
+  padding: 0.55rem 0.8rem;
+  border: 0.16rem solid var(--ink);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--gold);
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0.18rem 0.18rem 0 var(--ink);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.nav-links a:hover,
+.button:hover {
+  transform: translate(-0.06rem, -0.06rem);
+  box-shadow: 0.28rem 0.28rem 0 var(--ink);
+}
+
+.button.secondary {
+  background: var(--cyan);
+}
+
+.park-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(16rem, 0.95fr);
+  gap: 1.5rem;
+  align-items: center;
+  min-height: calc(100vh - 4.7rem);
+  padding: clamp(2rem, 6vw, 5rem) max(1rem, calc((100vw - 1180px) / 2)) 3rem;
+  border-bottom: 0.24rem solid var(--ink);
+  background:
+    linear-gradient(160deg, rgba(20, 124, 76, 0.92), rgba(9, 87, 53, 0.72)),
+    repeating-linear-gradient(-8deg, rgba(255, 210, 63, 0.26) 0 0.8rem, transparent 0.8rem 1.55rem);
+  color: var(--paper);
+}
+
+.hero-copy {
+  max-width: 42rem;
+}
+
+.eyebrow,
+.section-kicker,
+.subtitle,
+#status {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 900;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 0.45rem 0.7rem;
+  border: 0.18rem solid var(--ink);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--lime);
+  box-shadow: 0.25rem 0.25rem 0 var(--pink);
+}
+
+.park-hero h1,
+.content-section h2 {
+  margin: 0.75rem 0 0.6rem;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.park-hero h1 {
+  max-width: 11ch;
+  font-size: 8rem;
+  line-height: 0.82;
+  text-shadow: 0.06em 0.06em 0 var(--pink), 0.12em 0.12em 0 var(--cyan);
+}
+
+.park-hero p:not(.eyebrow) {
+  max-width: 38rem;
+  margin: 0 0 1.25rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.hero-animals {
+  position: relative;
+  min-height: 25rem;
+}
+
+.hero-gator {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: min(100%, 34rem);
+  filter: drop-shadow(0.6rem 0.8rem 0 rgba(0, 0, 0, 0.28));
+  transform: rotate(-3deg);
+}
+
+.hero-turtle {
+  position: absolute;
+  left: 0;
+  top: 1.2rem;
+  width: min(42%, 13rem);
+  filter: drop-shadow(0.35rem 0.45rem 0 rgba(0, 0, 0, 0.24));
+  transform: rotate(8deg);
+}
+
+.notice-band {
+  padding: 1rem max(1rem, calc((100vw - 1180px) / 2));
+  border-bottom: 0.18rem solid var(--ink);
+  background: var(--pink);
+}
+
+.notice-band p {
+  margin: 0;
+  color: var(--paper);
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 2.15rem;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.notice-band a {
+  color: var(--paper);
+  text-decoration-thickness: 0.14rem;
+  text-underline-offset: 0.22rem;
+}
+
+.content-section {
+  width: min(1180px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: clamp(2.6rem, 6vw, 4.5rem) 0;
+}
+
+.section-kicker {
+  color: var(--red);
+  text-transform: uppercase;
+}
+
+.content-section h2 {
+  max-width: 16ch;
+  font-size: 4.4rem;
+  line-height: 0.9;
+}
+
+.content-section p,
+.content-section li,
+.info-list span,
+.schedule-table span,
+.event-card span,
+.ticket-card span {
+  font-size: 1.02rem;
+  font-weight: 800;
+  line-height: 1.48;
+}
+
+.visit-grid,
+.safety-section {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.9fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.info-list {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.info-list div,
+.event-card,
+.ticket-card {
+  border: 0.18rem solid var(--ink);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 0.32rem 0.32rem 0 var(--shadow);
+}
+
+.info-list div {
+  display: grid;
+  gap: 0.25rem;
+  padding: 1rem;
+}
+
+.info-list strong {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.7rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.schedule-table {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1.4rem;
+}
+
+.schedule-table > div {
+  display: grid;
+  grid-template-columns: 7rem minmax(10rem, 0.7fr) minmax(0, 1fr);
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.9rem;
+  border: 0.16rem solid var(--ink);
+  border-radius: 8px;
+  background: var(--mist);
+}
+
+.schedule-table strong {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1.45rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.schedule-table span:first-child {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  border-radius: 8px;
+  color: var(--paper);
+  background: var(--deep-green);
+}
+
+.events-section {
+  width: 100%;
+  padding-right: max(1rem, calc((100vw - 1180px) / 2));
+  padding-left: max(1rem, calc((100vw - 1180px) / 2));
+  background: var(--lime);
+  border-block: 0.2rem solid var(--ink);
+}
+
+.event-grid,
+.ticket-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.event-card,
+.ticket-card {
+  display: grid;
+  gap: 0.45rem;
+  padding: 1rem;
+}
+
+.event-card p,
+.ticket-card p {
+  margin: 0;
+}
+
+.event-card h3,
+.ticket-card h3 {
+  margin: 0;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 2.35rem;
+  line-height: 0.95;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.ticket-card.featured {
+  background: var(--gold);
+}
+
+.price {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.safety-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.safety-list li {
+  padding: 0.85rem;
+  border-left: 0.5rem solid var(--green);
+  border-radius: 8px;
+  background: var(--mist);
+}
+
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.2rem max(1rem, calc((100vw - 1180px) / 2));
+  border-top: 0.18rem solid var(--ink);
+  background: var(--deep-green);
+  color: var(--paper);
+  font-weight: 900;
+}
+
+.site-footer p {
+  margin: 0;
 }
 
 .stage {
@@ -72,33 +450,14 @@ button {
   transform: rotate(-8deg);
 }
 
-.eyebrow,
-.subtitle,
-#status {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: 900;
-}
-
-.eyebrow {
-  display: inline-block;
-  padding: 0.45rem 0.7rem;
-  border: 0.2rem solid var(--ink);
-  background: var(--lime);
-  box-shadow: 0.3rem 0.3rem 0 var(--pink);
-}
-
-h1 {
+.game-page h1 {
   margin: 0.7rem auto 0.35rem;
   max-width: 11ch;
-  font-size: clamp(3.1rem, 5.8rem, 6.5rem);
+  font-size: 5.8rem;
   line-height: 0.9;
   letter-spacing: 0;
   text-transform: uppercase;
-  text-shadow:
-    0.08em 0.08em 0 var(--gold),
-    0.16em 0.16em 0 var(--pink),
-    0.24em 0.24em 0 var(--cyan);
+  text-shadow: 0.08em 0.08em 0 var(--gold), 0.16em 0.16em 0 var(--pink), 0.24em 0.24em 0 var(--cyan);
 }
 
 .subtitle {
@@ -107,7 +466,7 @@ h1 {
   padding: 0.6rem;
   border-top: 0.18rem dashed var(--ink);
   border-bottom: 0.18rem dashed var(--ink);
-  background: rgba(255, 247, 216, 0.78);
+  background: rgba(248, 255, 246, 0.78);
 }
 
 .arena {
@@ -219,9 +578,7 @@ h1 {
   padding: 0.7rem;
   border: 0.28rem solid var(--ink);
   border-radius: 8px;
-  background:
-    linear-gradient(90deg, transparent, rgba(255, 47, 143, 0.18), transparent),
-    var(--green);
+  background: linear-gradient(90deg, transparent, rgba(255, 63, 145, 0.18), transparent), var(--green);
 }
 
 .cell {
@@ -342,6 +699,64 @@ h1 {
 }
 
 @media (max-width: 920px) {
+  .brand {
+    font-size: 1.35rem;
+  }
+
+  .park-hero h1 {
+    font-size: 5.4rem;
+  }
+
+  .park-hero p:not(.eyebrow) {
+    font-size: 1.12rem;
+  }
+
+  .notice-band p {
+    font-size: 1.8rem;
+  }
+
+  .content-section h2 {
+    font-size: 3.5rem;
+  }
+
+  .event-card h3,
+  .ticket-card h3 {
+    font-size: 2.05rem;
+  }
+
+  .site-header,
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .nav-links {
+    justify-content: flex-start;
+  }
+
+  .park-hero,
+  .visit-grid,
+  .safety-section {
+    grid-template-columns: 1fr;
+  }
+
+  .park-hero {
+    min-height: auto;
+  }
+
+  .hero-animals {
+    min-height: 19rem;
+  }
+
+  .event-grid,
+  .ticket-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .schedule-table > div {
+    grid-template-columns: 1fr;
+  }
+
   .arena {
     grid-template-columns: 1fr;
   }
@@ -369,12 +784,44 @@ h1 {
 }
 
 @media (max-width: 640px) {
+  .site-header {
+    position: static;
+  }
+
+  .nav-links a {
+    flex: 1 1 8.5rem;
+  }
+
+  .park-hero h1 {
+    font-size: 4rem;
+  }
+
+  .notice-band p {
+    font-size: 1.45rem;
+  }
+
+  .hero-animals {
+    min-height: 15rem;
+  }
+
+  .hero-turtle {
+    width: min(45%, 9rem);
+  }
+
+  .content-section {
+    width: min(100% - 1rem, 1180px);
+  }
+
+  .content-section h2 {
+    font-size: 2.7rem;
+  }
+
   .stage {
     width: min(100% - 1rem, 1180px);
     padding-top: 0.6rem;
   }
 
-  h1 {
+  .game-page h1 {
     font-size: 3.1rem;
   }
 

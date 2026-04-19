@@ -3,86 +3,178 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Citrus Critter Brawl</title>
+    <title>Swamp Puppy Park | Florida's First Alligator Petting Zoo</title>
+    <meta
+      name="description"
+      content="Plan your visit to Swamp Puppy Park, Florida's first alligator petting zoo with family events, keeper talks, ticket info, and swamp-sized fun."
+    />
     <link rel="stylesheet" href="./src/styles.css" />
-    <script defer src="./src/app.js"></script>
   </head>
-  <body>
-    <main class="stage">
-      <section class="intro" aria-labelledby="game-title">
-        <div class="mascot-strip" aria-hidden="true">
-          <img src="./src/assets/turtle.svg" alt="" class="mascot turtle-float" />
-          <span class="burst">VS</span>
-          <img src="./src/assets/alligator.svg" alt="" class="mascot gator-float" />
+  <body class="home-page">
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="Swamp Puppy Park home">
+        <img src="./src/assets/alligator.svg" alt="" />
+        <span>Swamp Puppy Park</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#visit">Visit</a>
+        <a href="#events">Events</a>
+        <a href="#tickets">Tickets</a>
+        <a href="#safety">Safety</a>
+        <a href="./game.html">Citrus Critter Brawl</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="park-hero" aria-labelledby="park-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Florida's first alligator petting zoo</p>
+          <h1 id="park-title">Meet the swamp puppies.</h1>
+          <p>
+            Gentle keeper-led encounters, family events, shaded boardwalks, and enough
+            toothy charm to make the Everglades blush.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="#tickets">Buy Tickets</a>
+            <a class="button secondary" href="#schedule">Today's Schedule</a>
+          </div>
         </div>
-        <p class="eyebrow">Turtle pride. Alligator menace. Zero dignity.</p>
-        <h1 id="game-title">Citrus Critter Brawl</h1>
-        <p class="subtitle">Pick your chaos, slap an animal on the board, and try not to lose to swamp math.</p>
+        <div class="hero-animals" aria-hidden="true">
+          <img src="./src/assets/alligator.svg" alt="" class="hero-gator" />
+          <img src="./src/assets/turtle.svg" alt="" class="hero-turtle" />
+        </div>
       </section>
 
-      <section class="arena" aria-label="Tic tac toe game">
-        <div class="control-panel">
-          <div class="field-group" aria-label="Game mode">
-            <span class="label">Mode</span>
-            <button class="choice is-active" type="button" data-mode="computer">Play Computer</button>
-            <button class="choice" type="button" data-mode="person">Two Players</button>
-          </div>
+      <section class="notice-band" aria-label="Game notice">
+        <p>
+          Looking for the world famous Citrus Critter Brawl?
+          <a href="./game.html">Click here to enter the turtle vs. alligator arena.</a>
+        </p>
+      </section>
 
-          <div class="field-group" aria-label="Computer difficulty">
-            <span class="label">Computer</span>
-            <button class="choice is-active" type="button" data-difficulty="easy">Chaos</button>
-            <button class="choice" type="button" data-difficulty="hard">Unbeatable</button>
+      <section id="visit" class="content-section visit-grid" aria-labelledby="visit-title">
+        <div>
+          <p class="section-kicker">Plan your visit</p>
+          <h2 id="visit-title">A real day out, with very fake marketing confidence.</h2>
+          <p>
+            Swamp Puppy Park is built for curious kids, brave grandparents, camera-ready
+            parents, and anyone who has ever looked at a baby alligator and said,
+            "That little dinosaur needs a name tag."
+          </p>
+        </div>
+        <div class="info-list" aria-label="Visitor highlights">
+          <div>
+            <strong>Open Daily</strong>
+            <span>9:00 AM - 6:00 PM, last entry at 4:30 PM</span>
           </div>
-
-          <div class="field-group" aria-label="Pick your animal">
-            <span class="label">You Are</span>
-            <button class="choice animal-choice is-active" type="button" data-player="turtle">
-              <img src="./src/assets/turtle.svg" alt="" />
-              Turtle
-            </button>
-            <button class="choice animal-choice" type="button" data-player="alligator">
-              <img src="./src/assets/alligator.svg" alt="" />
-              Alligator
-            </button>
+          <div>
+            <strong>Location</strong>
+            <span>Off Sunshine Bog Road, minutes from souvenir oranges</span>
+          </div>
+          <div>
+            <strong>Best Ages</strong>
+            <span>Toddlers, teens, adults, and uncles who read every sign</span>
           </div>
         </div>
+      </section>
 
-        <div class="board-zone">
-          <div class="status-row" aria-live="polite">
-            <p id="status">Turtle starts. Make it weird.</p>
-            <button id="reset-round" class="reset" type="button">New Round</button>
+      <section id="schedule" class="content-section" aria-labelledby="schedule-title">
+        <p class="section-kicker">Daily schedule</p>
+        <h2 id="schedule-title">Keeper talks, feedings, and supervised petting times.</h2>
+        <div class="schedule-table" role="table" aria-label="Daily park schedule">
+          <div role="row">
+            <span role="cell">9:30 AM</span>
+            <strong role="cell">Tiny Chompers Welcome Parade</strong>
+            <span role="cell">Meet the smallest residents and learn the two-finger petting rule.</span>
           </div>
-
-          <div class="board" role="grid" aria-label="Tic tac toe board">
-            <button class="cell" type="button" role="gridcell" aria-label="Cell 1" data-index="0"></button>
-            <button class="cell" type="button" role="gridcell" aria-label="Cell 2" data-index="1"></button>
-            <button class="cell" type="button" role="gridcell" aria-label="Cell 3" data-index="2"></button>
-            <button class="cell" type="button" role="gridcell" aria-label="Cell 4" data-index="3"></button>
-            <button class="cell" type="button" role="gridcell" aria-label="Cell 5" data-index="4"></button>
-            <button class="cell" type="button" role="gridcell" aria-label="Cell 6" data-index="5"></button>
-            <button class="cell" type="button" role="gridcell" aria-label="Cell 7" data-index="6"></button>
-            <button class="cell" type="button" role="gridcell" aria-label="Cell 8" data-index="7"></button>
-            <button class="cell" type="button" role="gridcell" aria-label="Cell 9" data-index="8"></button>
+          <div role="row">
+            <span role="cell">11:00 AM</span>
+            <strong role="cell">Keeper Q and A</strong>
+            <span role="cell">Ask about diets, habitats, conservation, and why Gary hisses at hats.</span>
+          </div>
+          <div role="row">
+            <span role="cell">1:30 PM</span>
+            <strong role="cell">Family Photo Dock</strong>
+            <span role="cell">Pose near the lagoon with trained staff and excellent exit routes.</span>
+          </div>
+          <div role="row">
+            <span role="cell">3:00 PM</span>
+            <strong role="cell">Snack Splash</strong>
+            <span role="cell">A keeper-led feeding demo with splash-zone seating.</span>
+          </div>
+          <div role="row">
+            <span role="cell">4:15 PM</span>
+            <strong role="cell">Swamp Puppy Storytime</strong>
+            <span role="cell">Children's stories, turtle facts, and a suspiciously dramatic puppet.</span>
           </div>
         </div>
+      </section>
 
-        <aside class="scoreboard" aria-label="Scoreboard">
-          <h2>Swamp Score</h2>
-          <div class="score-line">
-            <span>Turtles</span>
-            <strong id="score-turtle">0</strong>
-          </div>
-          <div class="score-line">
-            <span>Alligators</span>
-            <strong id="score-alligator">0</strong>
-          </div>
-          <div class="score-line">
-            <span>Dramatic Ties</span>
-            <strong id="score-tie">0</strong>
-          </div>
-          <button id="reset-score" class="reset secondary" type="button">Erase Shame</button>
-        </aside>
+      <section id="events" class="content-section events-section" aria-labelledby="events-title">
+        <p class="section-kicker">Events for kids and family</p>
+        <h2 id="events-title">Make a memory. Wash your hands after.</h2>
+        <div class="event-grid">
+          <article class="event-card">
+            <p>Saturday Mornings</p>
+            <h3>Junior Keeper Club</h3>
+            <span>Animal care games, habitat crafts, and a certificate suitable for fridge glory.</span>
+          </article>
+          <article class="event-card">
+            <p>Every Full Moon</p>
+            <h3>Lantern Lagoon Walk</h3>
+            <span>A guided evening stroll with glow bracelets and respectful whispering.</span>
+          </article>
+          <article class="event-card">
+            <p>Birthdays</p>
+            <h3>Party Gator Package</h3>
+            <span>Reserved picnic tables, cupcakes, keeper visit, and one tiny reptile crown.</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="tickets" class="content-section tickets-section" aria-labelledby="tickets-title">
+        <p class="section-kicker">Tickets</p>
+        <h2 id="tickets-title">Pick your pass.</h2>
+        <div class="ticket-grid">
+          <article class="ticket-card">
+            <h3>General Admission</h3>
+            <p class="price">$18</p>
+            <span>Park entry, boardwalk access, daily keeper talks, and shaded picnic areas.</span>
+          </article>
+          <article class="ticket-card featured">
+            <h3>Petting Encounter</h3>
+            <p class="price">$32</p>
+            <span>Admission plus a timed, keeper-supervised alligator petting session.</span>
+          </article>
+          <article class="ticket-card">
+            <h3>Family Pack</h3>
+            <p class="price">$88</p>
+            <span>Admission for four, one snack bucket, and priority entry to storytime.</span>
+          </article>
+        </div>
+      </section>
+
+      <section id="safety" class="content-section safety-section" aria-labelledby="safety-title">
+        <div>
+          <p class="section-kicker">Safety first</p>
+          <h2 id="safety-title">Friendly does not mean unsupervised.</h2>
+          <p>
+            Every petting experience is led by trained keepers, sized for the animal, and
+            limited to small groups. Guests receive clear instructions before every encounter.
+          </p>
+        </div>
+        <ul class="safety-list">
+          <li>Closed-toe shoes are recommended on the boardwalk.</li>
+          <li>Children must stay with an adult during encounters.</li>
+          <li>Only park-provided food may be offered to animals.</li>
+          <li>Handwashing stations are placed at every animal contact area.</li>
+        </ul>
       </section>
     </main>
+
+    <footer class="site-footer">
+      <p>Swamp Puppy Park, proudly dramatic since this morning.</p>
+      <a href="./game.html">Citrus Critter Brawl</a>
+    </footer>
   </body>
 </html>

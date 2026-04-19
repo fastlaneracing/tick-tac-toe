@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Citrus Critter Brawl | Swamp Puppy Park</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script defer src="./src/app.js"></script>
+  </head>
+  <body class="game-page">
+    <header class="site-header compact">
+      <a class="brand" href="./index.html" aria-label="Swamp Puppy Park home">
+        <img src="./src/assets/alligator.svg" alt="" />
+        <span>Swamp Puppy Park</span>
+      </a>
+      <nav class="nav-links" aria-label="Game navigation">
+        <a href="./index.html">Park Home</a>
+        <a href="./index.html#tickets">Tickets</a>
+      </nav>
+    </header>
+
+    <main class="stage">
+      <section class="intro" aria-labelledby="game-title">
+        <div class="mascot-strip" aria-hidden="true">
+          <img src="./src/assets/turtle.svg" alt="" class="mascot turtle-float" />
+          <span class="burst">VS</span>
+          <img src="./src/assets/alligator.svg" alt="" class="mascot gator-float" />
+        </div>
+        <p class="eyebrow">Turtle pride. Alligator menace. Zero dignity.</p>
+        <h1 id="game-title">Citrus Critter Brawl</h1>
+        <p class="subtitle">Pick your chaos, slap an animal on the board, and try not to lose to swamp math.</p>
+      </section>
+
+      <section class="arena" aria-label="Tic tac toe game">
+        <div class="control-panel">
+          <div class="field-group" aria-label="Game mode">
+            <span class="label">Mode</span>
+            <button class="choice is-active" type="button" data-mode="computer">Play Computer</button>
+            <button class="choice" type="button" data-mode="person">Two Players</button>
+          </div>
+
+          <div class="field-group" aria-label="Computer difficulty">
+            <span class="label">Computer</span>
+            <button class="choice is-active" type="button" data-difficulty="easy">Chaos</button>
+            <button class="choice" type="button" data-difficulty="hard">Unbeatable</button>
+          </div>
+
+          <div class="field-group" aria-label="Pick your animal">
+            <span class="label">You Are</span>
+            <button class="choice animal-choice is-active" type="button" data-player="turtle">
+              <img src="./src/assets/turtle.svg" alt="" />
+              Turtle
+            </button>
+            <button class="choice animal-choice" type="button" data-player="alligator">
+              <img src="./src/assets/alligator.svg" alt="" />
+              Alligator
+            </button>
+          </div>
+        </div>
+
+        <div class="board-zone">
+          <div class="status-row" aria-live="polite">
+            <p id="status">Turtle starts. Make it weird.</p>
+            <button id="reset-round" class="reset" type="button">New Round</button>
+          </div>
+
+          <div class="board" role="grid" aria-label="Tic tac toe board">
+            <button class="cell" type="button" role="gridcell" aria-label="Cell 1" data-index="0"></button>
+            <button class="cell" type="button" role="gridcell" aria-label="Cell 2" data-index="1"></button>
+            <button class="cell" type="button" role="gridcell" aria-label="Cell 3" data-index="2"></button>
+            <button class="cell" type="button" role="gridcell" aria-label="Cell 4" data-index="3"></button>
+            <button class="cell" type="button" role="gridcell" aria-label="Cell 5" data-index="4"></button>
+            <button class="cell" type="button" role="gridcell" aria-label="Cell 6" data-index="5"></button>
+            <button class="cell" type="button" role="gridcell" aria-label="Cell 7" data-index="6"></button>
+            <button class="cell" type="button" role="gridcell" aria-label="Cell 8" data-index="7"></button>
+            <button class="cell" type="button" role="gridcell" aria-label="Cell 9" data-index="8"></button>
+          </div>
+        </div>
+
+        <aside class="scoreboard" aria-label="Scoreboard">
+          <h2>Swamp Score</h2>
+          <div class="score-line">
+            <span>Turtles</span>
+            <strong id="score-turtle">0</strong>
+          </div>
+          <div class="score-line">
+            <span>Alligators</span>
+            <strong id="score-alligator">0</strong>
+          </div>
+          <div class="score-line">
+            <span>Dramatic Ties</span>
+            <strong id="score-tie">0</strong>
+          </div>
+          <button id="reset-score" class="reset secondary" type="button">Erase Shame</button>
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>

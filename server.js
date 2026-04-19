@@ -35,5 +35,5 @@ const server = createServer(async (req, res) => {
 });
 
 server.listen(port, () => {
-  console.log(`Citrus Critter Brawl is live at http://localhost:${port}`);
+  console.log(`Swamp Puppy Park is live at http://localhost:${port}`);
 });

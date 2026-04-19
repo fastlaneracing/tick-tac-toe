@@ -1,8 +1,8 @@
 {
-  "name": "citrus-critter-brawl",
+  "name": "swamp-puppy-park",
   "version": "1.0.0",
   "private": true,
-  "description": "An extravagant turtle vs alligator tic-tac-toe browser game.",
+  "description": "A static Swamp Puppy Park website with a linked Citrus Critter Brawl tic-tac-toe game.",
   "type": "module",
   "scripts": {
     "build": "echo No build needed",
@@ -10,9 +10,9 @@
     "start": "node server.js"
   },
   "keywords": [
+    "static-site",
+    "zoo",
     "tic-tac-toe",
-    "browser-game",
-    "turtle",
     "alligator"
   ],
   "author": "",
