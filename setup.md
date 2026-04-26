@@ -4,6 +4,55 @@ This app is a static Swamp Puppy Park website with a linked browser game, so the
 
 Azure Static Web Apps is a good fit because the site is plain HTML, CSS, JavaScript, and SVG assets. It does not need a backend server to run.
 
+This repo now also includes a simple **AKS container deployment path** for training. That path keeps the existing tiny Node server and packages the app into a container image that can run in Azure Kubernetes Service.
+
+## Current Handoff Status
+
+This section is here so a future session can resume without rediscovering the setup.
+
+Current known state:
+
+- the shared AKS platform is already deployed from the Terraform lab repo
+- the AKS cluster is already deployed from the Terraform lab repo
+- the target AKS resource group is `rg-main-akslab`
+- the target AKS cluster is `aks-main-akslab`
+- the target shared ACR is `acrmainaksshared`
+- this repo is the app we want to deploy next
+
+That means the current task is application rollout, not AKS infrastructure creation.
+
+## Immediate Next Steps For This Repo
+
+From `C:\devops\tick-tac-toe`, the next deployment flow is:
+
+```powershell
+az aks get-credentials --resource-group rg-main-akslab --name aks-main-akslab --overwrite-existing
+kubectl get nodes
+
+az acr login --name acrmainaksshared
+docker build -t acrmainaksshared.azurecr.io/swamp-puppy-park:latest .
+docker push acrmainaksshared.azurecr.io/swamp-puppy-park:latest
+
+kubectl apply -f .\k8s\namespace.yaml
+kubectl apply -f .\k8s\deployment.yaml
+kubectl apply -f .\k8s\service.yaml
+
+kubectl rollout status deployment/swamp-puppy-park -n swamp-puppy-park
+kubectl get pods -n swamp-puppy-park
+kubectl get svc -n swamp-puppy-park
+```
+
+After the `LoadBalancer` service gets an external IP, open that IP in a browser and verify:
+
+- the Swamp Puppy Park homepage loads
+- the link to Citrus Critter Brawl works
+- static assets load correctly
+- both AKS replicas are healthy
+
+Recommended next refinement after the first successful rollout:
+
+- switch the image reference from `:latest` to a real deployment tag such as `:v1` or a date-based version so rollouts and rollbacks are easier to track
+
 ## Recommended Publishing Path
 
 1. Put the app in GitHub.
@@ -13,6 +62,62 @@ Azure Static Web Apps is a good fit because the site is plain HTML, CSS, JavaScr
 5. Add `www.swamppuppypark.com` as a custom domain.
 6. Point DNS records from the domain to Azure.
 7. Optionally redirect `swamppuppypark.com` to `www.swamppuppypark.com`.
+
+## AKS Training Path
+
+If you want to run this app in AKS instead of Azure Static Web Apps, the repo now includes:
+
+- `Dockerfile`
+- `.dockerignore`
+- `k8s/namespace.yaml`
+- `k8s/deployment.yaml`
+- `k8s/service.yaml`
+
+This path uses the existing `server.js` static file server, so no framework build step is needed.
+
+### Container Build Approach
+
+The container:
+
+- uses Node
+- copies `server.js`, the HTML files, and `src/`
+- listens on port `8080`
+- serves the same app content you already run locally with `npm start`
+
+### Build and Push to ACR
+
+From this repo folder, after signing into Azure and ACR, build and push:
+
+```powershell
+docker build -t acrmainaksshared.azurecr.io/swamp-puppy-park:latest .
+docker push acrmainaksshared.azurecr.io/swamp-puppy-park:latest
+```
+
+If you are not already logged into ACR:
+
+```powershell
+az acr login --name acrmainaksshared
+```
+
+### Deploy to AKS
+
+After connecting `kubectl` to the cluster, apply the Kubernetes manifests:
+
+```powershell
+kubectl apply -f .\k8s\namespace.yaml
+kubectl apply -f .\k8s\deployment.yaml
+kubectl apply -f .\k8s\service.yaml
+```
+
+Check rollout and service status:
+
+```powershell
+kubectl get pods -n swamp-puppy-park
+kubectl get svc -n swamp-puppy-park
+kubectl rollout status deployment/swamp-puppy-park -n swamp-puppy-park
+```
+
+The initial service is `LoadBalancer` so you can get a public IP quickly for training. Later, this can be replaced with an ingress controller and DNS.
 
 ## Push the App to GitHub
 
