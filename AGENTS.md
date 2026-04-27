@@ -99,6 +99,8 @@ The workflow includes a safe preflight check that confirms the deployment token 
 
 If Azure reports `No matching Static Web App was found or the api key was invalid`, first check the token secret value and the Azure Static Web App branch/workflow mapping. During initial setup, a rebuild/recreated Azure Static Web Apps binding fixed a stale token/resource mismatch.
 
+If the AKS cluster is destroyed and recreated, local `kubectl` access must be refreshed before applying the manifests again. The stale AKS API server URL is usually in the local kubeconfig at `C:\Users\<your-user>\.kube\config`, not in the files under `k8s/`. In that case, rerun `az aks get-credentials --resource-group rg-main-akslab --name aks-main-akslab --overwrite-existing` and verify the active cluster `server:` entry before retrying `kubectl apply`.
+
 Keep `setup.md` updated with any deployment procedure changes.
 
 ## Verification

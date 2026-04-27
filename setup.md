@@ -180,6 +180,21 @@ Why:
 - this imports the AKS cluster credentials into your local kubeconfig
 - this confirms you are targeting the correct cluster before deploying
 
+Important after an AKS cluster rebuild or redeploy:
+
+- if the AKS cluster was destroyed and recreated, your local kubeconfig may still point to the old API server hostname
+- if `kubectl apply` fails with an error like `failed to download openapi` or `lookup <old-aks-hostname>: no such host`, the problem is usually stale local cluster credentials, not the files under `k8s/`
+- the old API server URL is stored in your local kubeconfig, usually at `C:\Users\<your-user>\.kube\config`
+- rerun `az aks get-credentials --resource-group rg-main-akslab --name aks-main-akslab --overwrite-existing` to refresh the cluster `server:` entry before trying `kubectl apply` again
+
+Useful checks:
+
+```powershell
+kubectl config current-context
+kubectl config view --minify
+kubectl config view --minify -o jsonpath="{.clusters[0].cluster.server}"
+```
+
 Success looks like:
 
 - the context updates successfully
