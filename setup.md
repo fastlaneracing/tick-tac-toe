@@ -290,6 +290,84 @@ Recommended next refinement after the first successful rollout:
 
 - switch the image reference from `:latest` to a real deployment tag such as `:v1` or a date-based version so rollouts and rollbacks are easier to track
 
+## How To Update The AKS App After You Change The Site
+
+Azure Static Web Apps updates automatically from GitHub Actions, but AKS does not automatically redeploy this app just because Git changed.
+
+For AKS, the usual update flow is:
+
+1. build a new container image
+2. push that image to ACR
+3. tell Kubernetes to use the new image, or restart the deployment so new pods pull it
+
+### Preferred Update Flow: Use A Real Image Tag
+
+This is the cleaner approach because you can see exactly which version is deployed and roll back more easily if needed.
+
+From `C:\devops\tick-tac-toe`:
+
+```powershell
+az aks get-credentials --resource-group rg-main-akslab --name aks-main-akslab --overwrite-existing
+az acr login --name acrmainaksshared
+
+$tag = "v2"
+docker build -t acrmainaksshared.azurecr.io/swamp-puppy-park:$tag .
+docker push acrmainaksshared.azurecr.io/swamp-puppy-park:$tag
+```
+
+Then update [k8s/deployment.yaml](</c:/devops/tick-tac-toe/k8s/deployment.yaml>) so the image line uses that tag instead of `:latest`:
+
+```yaml
+image: acrmainaksshared.azurecr.io/swamp-puppy-park:v2
+```
+
+Then apply the deployment and wait for the rollout:
+
+```powershell
+kubectl apply -f .\k8s\deployment.yaml
+kubectl rollout status deployment/swamp-puppy-park -n swamp-puppy-park
+kubectl get pods -n swamp-puppy-park
+```
+
+After that, refresh the site in the browser and confirm the changes are live.
+
+### Quick Update Flow: Keep Using `:latest`
+
+If you want the fastest short-term workflow, you can keep using `:latest`.
+
+From `C:\devops\tick-tac-toe`:
+
+```powershell
+az aks get-credentials --resource-group rg-main-akslab --name aks-main-akslab --overwrite-existing
+az acr login --name acrmainaksshared
+
+docker build -t acrmainaksshared.azurecr.io/swamp-puppy-park:latest .
+docker push acrmainaksshared.azurecr.io/swamp-puppy-park:latest
+
+kubectl rollout restart deployment/swamp-puppy-park -n swamp-puppy-park
+kubectl rollout status deployment/swamp-puppy-park -n swamp-puppy-park
+kubectl get pods -n swamp-puppy-park
+```
+
+That restart step matters. Even though this deployment uses `imagePullPolicy: Always`, Kubernetes will not replace already-running pods just because you pushed a new `:latest` image. The restart creates new pods, and those new pods pull the updated image.
+
+### How To Know Which Method To Use
+
+- Use real tags like `:v2`, `:v3`, or `:20260427-1` if you want safer repeatable deployments.
+- Use `:latest` plus `kubectl rollout restart` if you want the simplest training workflow.
+
+### Good Verification After An Update
+
+After either update flow, check:
+
+```powershell
+kubectl get pods -n swamp-puppy-park
+kubectl describe deployment swamp-puppy-park -n swamp-puppy-park
+kubectl get svc -n swamp-puppy-park
+```
+
+Then open the app and verify the specific page change you made is visible.
+
 ## Recommended Publishing Path
 
 1. Put the app in GitHub.

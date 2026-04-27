@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: acrmainaksshared.azurecr.io/swamp-puppy-park:latest
+          image: acrmainaksshared.azurecr.io/swamp-puppy-park:v2
           imagePullPolicy: Always
           env:
             - name: PORT
