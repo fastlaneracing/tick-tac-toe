@@ -4,8 +4,7 @@ WORKDIR /app
 
 COPY package.json ./
 COPY server.js ./
-COPY index.html ./
-COPY game.html ./
+COPY *.html ./
 COPY src ./src
 
 ENV NODE_ENV=production

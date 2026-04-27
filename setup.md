@@ -395,9 +395,11 @@ This path uses the existing `server.js` static file server, so no framework buil
 The container:
 
 - uses Node
-- copies `server.js`, the HTML files, and `src/`
+- copies `server.js`, all root-level `.html` files, and `src/`
 - listens on port `8080`
 - serves the same app content you already run locally with `npm start`
+
+If a page works in Azure Static Web Apps but returns `Not found` in AKS, check whether that file was actually copied into the container image during `docker build`.
 
 ### Build and Push to ACR
 
