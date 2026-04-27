@@ -23,6 +23,127 @@ That means the current task is application rollout, not AKS infrastructure creat
 
 ## Immediate Next Steps For This Repo
 
+### Required Local Tools
+
+Before you run the AKS deployment steps from this repo, make sure these tools are installed on your machine:
+
+- Azure CLI
+- `kubectl`
+- Docker Desktop or another working Docker engine
+
+Quick checks:
+
+```powershell
+az version
+kubectl version --client
+docker version
+```
+
+If PowerShell says a command is not recognized, that tool is not installed yet or is not on your `PATH`.
+
+### What Docker Is
+
+Docker is the tool that builds this project into a container image.
+
+In this repo:
+
+- [Dockerfile](</c:/devops/tick-tac-toe/Dockerfile>) defines how the app is packaged
+- Docker builds the image
+- ACR stores the image
+- AKS pulls and runs the image
+
+So the simple mental model is:
+
+- Docker builds the package
+- ACR stores the package
+- `kubectl` tells AKS to run the package
+
+### How to Verify Docker
+
+Run:
+
+```powershell
+docker version
+docker info
+```
+
+Good signs:
+
+- `docker version` shows both client and server sections
+- `docker info` returns engine details
+
+The best quick test is:
+
+```powershell
+docker run hello-world
+```
+
+That should download a small test image, run it, print a success message, and exit.
+
+### How to Install Docker if Needed
+
+On this Windows-based lab machine, the usual install path is Docker Desktop for Windows.
+
+Basic flow:
+
+1. download Docker Desktop
+2. run the installer
+3. keep the WSL 2 backend option enabled unless you have a specific reason to choose Hyper-V
+4. finish installation
+5. start Docker Desktop
+6. return to PowerShell and verify Docker
+
+After installation, verify:
+
+```powershell
+docker version
+docker run hello-world
+```
+
+If Docker seems installed but commands fail, check:
+
+- Docker Desktop is running
+- WSL is installed and working
+- virtualization is enabled
+- you opened a new PowerShell window after installation
+
+### What `kubectl` Is
+
+`kubectl` is the Kubernetes command-line tool.
+
+It is not a normal desktop app with a graphical window. It is a terminal command you use to control a Kubernetes cluster.
+
+In this repo, we use `kubectl` to:
+
+- connect your local machine to the AKS cluster context
+- apply the Kubernetes YAML files under `k8s/`
+- check whether the pods started successfully
+- inspect services, logs, and rollout status
+
+If `kubectl` is missing, the simplest install path for this Azure lab is usually:
+
+```powershell
+az aks install-cli
+```
+
+Then verify it:
+
+```powershell
+kubectl version --client
+```
+
+### Why We Need `kubectl`
+
+Terraform created the AKS cluster itself, but Terraform is not what we are using here to deploy the Swamp Puppy Park app into Kubernetes.
+
+The app rollout uses:
+
+- Docker to package the site into a container image
+- ACR to store that image
+- `kubectl` to tell AKS to run the image
+
+So if Docker is the packaging tool, `kubectl` is the cluster control tool.
+
 From `C:\devops\tick-tac-toe`, the next deployment flow is:
 
 ```powershell
@@ -40,6 +161,122 @@ kubectl apply -f .\k8s\service.yaml
 kubectl rollout status deployment/swamp-puppy-park -n swamp-puppy-park
 kubectl get pods -n swamp-puppy-park
 kubectl get svc -n swamp-puppy-park
+```
+
+### What Each Step Is Doing
+
+#### 1. Connect `kubectl` to the AKS Cluster
+
+Use:
+
+```powershell
+az aks get-credentials --resource-group rg-main-akslab --name aks-main-akslab --overwrite-existing
+kubectl config current-context
+kubectl get nodes
+```
+
+Why:
+
+- this imports the AKS cluster credentials into your local kubeconfig
+- this confirms you are targeting the correct cluster before deploying
+
+Success looks like:
+
+- the context updates successfully
+- `kubectl get nodes` shows ready nodes
+
+#### 2. Build the Container Image
+
+Use:
+
+```powershell
+docker build -t acrmainaksshared.azurecr.io/swamp-puppy-park:latest .
+```
+
+Why:
+
+- AKS runs container images, not raw project folders
+- this packages `server.js`, the HTML files, and `src/` into a runnable image
+
+Success looks like:
+
+- Docker finishes the build successfully
+- the final image tag is `acrmainaksshared.azurecr.io/swamp-puppy-park:latest`
+
+#### 3. Push the Image to ACR
+
+Use:
+
+```powershell
+az acr login --name acrmainaksshared
+docker push acrmainaksshared.azurecr.io/swamp-puppy-park:latest
+```
+
+Why:
+
+- the AKS cluster pulls the image from Azure Container Registry
+- if the image only exists on your machine, the cluster cannot deploy it
+
+Success looks like:
+
+- ACR login succeeds
+- Docker push completes and uploads the image layers
+
+#### 4. Apply the Kubernetes Manifests
+
+Use:
+
+```powershell
+kubectl apply -f .\k8s\namespace.yaml
+kubectl apply -f .\k8s\deployment.yaml
+kubectl apply -f .\k8s\service.yaml
+```
+
+Why:
+
+- `namespace.yaml` creates the app namespace
+- `deployment.yaml` creates the app pods and tells Kubernetes which image to run
+- `service.yaml` creates the public `LoadBalancer` service
+
+Success looks like:
+
+- resources are created or reported as unchanged
+- pods start appearing in namespace `swamp-puppy-park`
+
+#### 5. Wait for the Load Balancer and Test the Site
+
+Use:
+
+```powershell
+kubectl rollout status deployment/swamp-puppy-park -n swamp-puppy-park
+kubectl get pods -n swamp-puppy-park
+kubectl get svc -n swamp-puppy-park
+```
+
+Why:
+
+- this confirms the rollout completed
+- this gives you the public IP assigned to the `LoadBalancer` service
+
+Success looks like:
+
+- the deployment rollout completes
+- the pods are `Running`
+- the service gets a real `EXTERNAL-IP` instead of `pending`
+
+Testing:
+
+- browse to `http://<external-ip>`
+- verify the homepage loads
+- verify the link to Citrus Critter Brawl works
+- verify the CSS, SVG assets, and JavaScript all load correctly
+
+Useful troubleshooting checks:
+
+```powershell
+kubectl describe deployment swamp-puppy-park -n swamp-puppy-park
+kubectl describe pod -n swamp-puppy-park <pod-name>
+kubectl logs -n swamp-puppy-park <pod-name>
 ```
 
 After the `LoadBalancer` service gets an external IP, open that IP in a browser and verify:
@@ -287,7 +524,8 @@ https://some-random-name.azurestaticapps.net
 Open that URL and confirm:
 
 - The Swamp Puppy Park homepage loads.
-- The navigation and ticket/event sections are reachable.
+- The homepage Tickets and Buy Tickets links open `tickets.html`.
+- The event sections are reachable.
 - The Citrus Critter Brawl link opens `game.html`.
 - The game grid accepts clicks.
 - Turtle and alligator pieces appear.

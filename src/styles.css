@@ -42,6 +42,13 @@ body.game-page {
     repeating-linear-gradient(45deg, #147c4c 0 1.25rem, #f8fff6 1.25rem 2.5rem);
 }
 
+body.tickets-page {
+  background:
+    radial-gradient(circle at top right, rgba(255, 210, 63, 0.9), transparent 20rem),
+    linear-gradient(145deg, rgba(20, 124, 76, 0.12), rgba(47, 216, 255, 0.18)),
+    repeating-linear-gradient(-35deg, #f8fff6 0 1.1rem, #fff4cf 1.1rem 2.2rem);
+}
+
 img {
   max-width: 100%;
 }
@@ -371,6 +378,163 @@ button {
 
 .ticket-card.featured {
   background: var(--gold);
+}
+
+.tickets-preview-copy {
+  max-width: 40rem;
+  margin-bottom: 1.2rem;
+}
+
+.tickets-preview-button {
+  margin-top: 0.25rem;
+}
+
+.ticket-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.85fr);
+  gap: 1.5rem;
+  align-items: start;
+  min-height: calc(100vh - 4.7rem);
+  padding: clamp(2rem, 6vw, 5rem) max(1rem, calc((100vw - 1180px) / 2)) 3rem;
+  border-bottom: 0.24rem solid var(--ink);
+  background:
+    linear-gradient(155deg, rgba(255, 63, 145, 0.9), rgba(227, 49, 38, 0.8)),
+    repeating-linear-gradient(-10deg, rgba(255, 210, 63, 0.24) 0 0.85rem, transparent 0.85rem 1.7rem);
+  color: var(--paper);
+}
+
+.ticket-hero-copy {
+  max-width: 44rem;
+}
+
+.ticket-hero h1 {
+  max-width: 10ch;
+  margin: 0.75rem 0 0.6rem;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 6.7rem;
+  line-height: 0.84;
+  text-transform: uppercase;
+  text-shadow: 0.06em 0.06em 0 var(--deep-green), 0.12em 0.12em 0 var(--gold);
+}
+
+.ticket-hero p:not(.eyebrow):not(.purchase-kicker):not(.mini-note) {
+  max-width: 38rem;
+  margin: 0 0 1.25rem;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.ticket-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.88fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.ticket-stack {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1.35rem;
+}
+
+.info-list-card,
+.purchase-panel,
+.faq-card {
+  border: 0.18rem solid var(--ink);
+  border-radius: 8px;
+  background: rgba(248, 255, 246, 0.95);
+  box-shadow: 0.32rem 0.32rem 0 var(--shadow);
+}
+
+.info-list-card {
+  display: grid;
+  gap: 0.3rem;
+  padding: 1rem;
+}
+
+.info-list-card strong,
+.purchase-panel h3,
+.faq-card h3,
+.ticket-tag {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.info-list-card strong,
+.purchase-panel h3,
+.faq-card h3 {
+  font-size: 1.7rem;
+}
+
+.purchase-panel {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  color: var(--ink);
+}
+
+.featured-panel {
+  background: linear-gradient(180deg, rgba(255, 210, 63, 0.95), rgba(248, 255, 246, 0.98));
+}
+
+.purchase-kicker,
+.ticket-tag {
+  margin: 0;
+  color: var(--red);
+}
+
+.ticket-tag {
+  font-size: 1rem;
+}
+
+.order-list {
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding-left: 1.2rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.mini-note,
+.order-total,
+.faq-card p {
+  margin: 0;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.order-total {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 2rem;
+  text-transform: uppercase;
+}
+
+.ticket-action {
+  margin-top: 0.45rem;
+}
+
+.ticket-faq {
+  width: 100%;
+  padding-right: max(1rem, calc((100vw - 1180px) / 2));
+  padding-left: max(1rem, calc((100vw - 1180px) / 2));
+  background: var(--mist);
+  border-block: 0.2rem solid var(--ink);
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.faq-card {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1rem;
 }
 
 .price {
@@ -707,6 +871,10 @@ button {
     font-size: 5.4rem;
   }
 
+  .ticket-hero h1 {
+    font-size: 4.9rem;
+  }
+
   .park-hero p:not(.eyebrow) {
     font-size: 1.12rem;
   }
@@ -735,8 +903,10 @@ button {
   }
 
   .park-hero,
+  .ticket-hero,
   .visit-grid,
-  .safety-section {
+  .safety-section,
+  .ticket-layout {
     grid-template-columns: 1fr;
   }
 
@@ -749,7 +919,8 @@ button {
   }
 
   .event-grid,
-  .ticket-grid {
+  .ticket-grid,
+  .faq-grid {
     grid-template-columns: 1fr;
   }
 
@@ -794,6 +965,10 @@ button {
 
   .park-hero h1 {
     font-size: 4rem;
+  }
+
+  .ticket-hero h1 {
+    font-size: 3.7rem;
   }
 
   .notice-band p {

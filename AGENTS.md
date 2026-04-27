@@ -7,6 +7,7 @@ This is a browser-based website for **Swamp Puppy Park**, a fictional Florida al
 The site uses:
 
 - `index.html` for the Swamp Puppy Park homepage
+- `tickets.html` for the separate Swamp Puppy Park ticket purchase page
 - `game.html` for the Citrus Critter Brawl game page
 - `src/styles.css` for the extravagant visual design across the site and game
 - `src/app.js` for all gameplay logic on `game.html`
@@ -36,6 +37,7 @@ http://localhost:5173
 ```
 
 The app is also designed to work by opening `index.html` directly in a browser.
+Open `tickets.html` directly to test the separate ticket purchase page without the local server.
 Open `game.html` directly to test Citrus Critter Brawl without the local server.
 
 ## Development Notes
@@ -104,6 +106,7 @@ Keep `setup.md` updated with any deployment procedure changes.
 Before finishing changes, check:
 
 - The Swamp Puppy Park homepage loads.
+- The homepage Tickets and Buy Tickets links open `tickets.html`.
 - The homepage link to Citrus Critter Brawl opens `game.html`.
 - The grid accepts clicks.
 - Pieces appear in selected squares.
